@@ -3,7 +3,7 @@ import numpy as np
 import imutils
 
 #
-#	Programa de Visao Computacional - OpenCV
+#	Programa de Visao Computacional por Cor- OpenCV
 #	Versao: 1.0
 #	Autor: Bruno Pinheiro Iglesias
 #	Contato: bruno.iglesias.eng@gmail.com
@@ -95,7 +95,7 @@ def captura():
 		k = cv2.waitKey(5) & 0xFF
 
     		if k == 27:
-			break
+				break
 	cap.release()
 	cv2.destroyAllWindows()
 	
