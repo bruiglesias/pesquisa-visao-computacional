@@ -1,0 +1,35 @@
+Como criar e treinar seu próprio Haar Cascade em 10 passos
+Autor: Bruno Pinheiro Iglesias
+E-mail: bruno.iglesias.eng@gmail.com
+
+Passo 1: Fazer a instalação das seguintes bibliotecas
+
+apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev 
+libswscale-dev python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev 
+libjasper-dev libdc1394-22-dev libopencv-dev
+
+Passo 2: Crie uma pasta para ser sua pasta de trabalho
+
+Passo 3: Escolher uma imagem com o objeto a ser detectado e redimensioná-lo (50px x 50px),
+ela será usada para gerar os exemplos positivos
+
+Passo 4: Criar uma pasta dentro da pasta de trabalho com todos os exemplos negativos em escala de cinza
+
+Passo 5: Criar um arquivo bg.txt  na pasta de trabalho com o endereco de todas as imagens negativas
+
+Passo 6: Criar uma pasta info dentro da pasta de trabalho
+
+Passo 7: Criando as imagens positivas. Executar no terminal o comando:
+
+opencv_createsamples -img imagem_positiva.jpg -bg bg.txt -info info/info.lst 
+-pngoutput info -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 200
+
+Passo 8: Criando um arquivo vetorial. Execute no terminal:
+
+opencv_createsamples -info info/info.lst -num 1950 -w 20 -h 20 -vec positives.vec
+
+Passo 9: Crie uma pasta data na pasta de trabalho
+
+Passo 10: Treinamento. Digite no terminal o comando e aguarde a criação do arquivo xml:
+
+opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 1800 -numNeg 200 -numStages 10 -w 20 -h 20
